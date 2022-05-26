@@ -75,17 +75,52 @@ package leetcode.editor.cn;
 // Related Topics 哈希表 数学 字符串 
 // 👍 1722 👎 0
 
-class RomanToInteger{
-    public static void main(String[] args){
+class RomanToInteger {
+    public static void main(String[] args) {
         Solution solution = new RomanToInteger().new Solution();
-        
-    }
-    //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int romanToInt(String s) {
 
     }
-}
+
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        public int romanToInt(String s) {
+            int result = 0;
+            for (int i = 1; i <= s.length(); i++) {
+                char a = s.charAt(i - 1);
+                if (i == s.length()){
+                    result += getValue(a);
+                    return result;
+                }
+                char b = s.charAt(i);
+                if (getValue(a) < getValue(b)){
+                    result = result - getValue(a);
+                } else {
+                    result += getValue(a);
+                }
+            }
+            return result;
+        }
+
+        private int getValue(char s) {
+            switch (s) {
+                case 'I':
+                    return 1;
+                case 'V':
+                    return 5;
+                case 'X':
+                    return 10;
+                case 'L':
+                    return 50;
+                case 'C':
+                    return 100;
+                case 'D':
+                    return 500;
+                case 'M':
+                    return 1000;
+            }
+            return 0;
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
